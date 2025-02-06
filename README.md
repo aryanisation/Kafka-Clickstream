@@ -1,34 +1,47 @@
-# Clickstream Analysis & Anomaly Detection with Kafka & Spark Structured Streaming
-This project is a real-time Clickstream Data Processing Pipeline built using Apache Kafka, Apache Spark Streaming, PostgreSQL, and Google BigQuery. It ingests, processes, analyzes, and detects anomalies in web clickstream data to derive actionable insights.
+# 📊 Clickstream Analysis & Anomaly Detection with Kafka & Spark Streaming
 
-## Features
-1. Kafka for event Streaming :Captures raw clickstream data in real time.
+A real-time **Clickstream Data Processing and Anomaly Detection Pipeline** built using **Apache Kafka, Apache Spark Structured Streaming, PostgreSQL, and Google BigQuery**. It ingests, processes, analyzes, and detects anomalies in web clickstream data, posting alerts back to Kafka for real-time monitoring.
 
-2. Spark Streaming for Processing: Transforms and enriches data before storage.
+## 🚀 Features
+- **Kafka Producer(Python FakeAPI)** – Produces clickstream events in real-time.  
+- **Spark Structured Streaming** – Consumes data from Kafka, processes it, and performs anomaly detection.  
+- **PostgreSQL for Raw Data** – Stores raw clickstream events for further analysis.  
+- **BigQuery for Aggregated Data** – Stores processed and aggregated data for analytical queries and dashboards.  
+- **Anomaly Detection** – Detects unusual behavior and posts alerts back to a Kafka topic.
 
-3. PostgreSQL for Detailed Logs: Stores raw clickstream events for further analysis.
+## 🛠️ Technologies Used
+- **Apache Kafka** – Event streaming  
+- **Apache Spark Structured Streaming** – Real-time processing & anomaly detection  
+- **PostgreSQL** – Transactional storage  
+- **Google BigQuery** – Analytical storage  
+- **Python** – Synthetic clickstrem data 
 
-4. BigQuery for Aggregated Insights: Stores processed data for analytical queries and dashboards.
+## 📌 Use Cases
+- ✅ Website visitor behavior analysis   
+- ✅ User segmentation & engagement analysis  
+- ✅ Real-time anomaly detection & alerting
+- ✅ Fraudulent activity monitoring  
 
-5. Anomaly Detection: Identifies unusual user behavior and posts alerts back to a Kafka topic.
-
-## Technologies Used
-#### Apache Kafka
-#### Apache Spark Structured Streaming
-#### PostgresSQL
-#### Python
-
-## Architecture
+## ⚙️ Architecture
 ```mermaid
 graph LR;
-    A[Clickstream Data] --> B[Kafka Producer];
-    B --> C[Kafka Topic];
-    C --> D[Spark Streaming];
-    D --> E[PostgreSQL / BigQuery];
-    D --> F[Anomaly Detection];
+    A[Kafka Producer Python FakeAPI] --> B[Kafka Topic];
+    B --> C[Spark Structured Streaming];
+    C --> D[PostgreSQL Raw Data];
+    C --> E[BigQuery Aggregated Data];
+    C --> F[Anomaly Detection];
     F --> G[Kafka Anomaly Topic];
+
 ```
-## Setup and Deployment
+### Description:
+1. **Kafka Producer (Python FakeAPI)**: The producer creates and sends messages to a Kafka topic.  
+2. **Spark Structured Streaming**: Spark reads messages from the Kafka topic in real time.  
+3. **PostgreSQL**: Spark writes raw data to PostgreSQL.  
+4. **BigQuery**: Aggregated data from Spark is stored in BigQuery.  
+5. **Anomaly Detection**: Spark processes the data for anomaly detection.  
+6. **Kafka Anomaly Topic**: Anomalous data is posted to a Kafka topic for real-time monitoring.
+
+## 🧑‍💻 Setup and Deployment
 ###  Deploy Kafka on GCP VM:
 #### 1. Install Java (Required for Kafka & Spark)
 ```bash
@@ -48,18 +61,9 @@ cd kafka
 ```bash
 bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
 ```
-Verify Zookeeper
-```bash
-telnet localhost 2181
-```
-
 ##### Start Kafka broker
 ```bash
 bin/kafka-server-start.sh -daemon config/server.properties
-```
-Verify Kafka brokers
-```bash
-telnet localhost 9092
 ```
 ### Install Apache Spark
 #### Download and Extract Spark
@@ -90,12 +94,11 @@ source ~/.bashrc
 jupyter lab --ip=0.0.0.0 --port=8888 --no-browser
 ```
 
+## 📜 Contributing
+Contributions are welcome! Feel free to submit issues or open a PR.
 
-
-
-
-
-
+## 📄 License
+MIT License
 
 
 
